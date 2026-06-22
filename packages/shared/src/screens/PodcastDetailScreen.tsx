@@ -1,6 +1,10 @@
+import React, { useMemo, useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { scaleFontSize, scaleHeight, scaleWidth } from '../utils/scaling';
+import { EpisodeItem } from '../components/EpisodeItem';
+import episodesJson from '../data/episodes.json';
 import podcasts from '../data/trending.json';
+import { scaleFontSize, scaleHeight, scaleWidth } from '../utils/scaling';
+import type { Episode } from '../types';
 
 export interface PodcastDetailScreenProps {
   id: string | number;
@@ -10,6 +14,24 @@ export function PodcastDetailScreen({ id }: PodcastDetailScreenProps) {
   const podcast = (podcasts as any).feeds.find(
     (feed: any) => String(feed.id) === String(id),
   );
+
+  const episodes = useMemo(() => {
+    const episodes = (episodesJson as any) as { items?: Episode[] };
+    // episodes.json includes a query field in its payload; for this UI we just show the items.
+    return (episodes.items ?? []) as Episode[];
+  }, []);
+
+  const [focusedEpisodeId, setFocusedEpisodeId] = useState<number | null>(
+    episodes[0]?.id ?? null,
+  );
+
+  // If episodes array is populated after mount, ensure default focus is the first item.
+  React.useEffect(() => {
+    if (focusedEpisodeId == null && episodes[0]?.id != null) {
+      setFocusedEpisodeId(episodes[0].id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [episodes]);
 
   if (!podcast) {
     return (
@@ -21,10 +43,7 @@ export function PodcastDetailScreen({ id }: PodcastDetailScreenProps) {
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={styles.content}
-    >
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.header}>
         <Image
           style={styles.artwork}
@@ -45,8 +64,19 @@ export function PodcastDetailScreen({ id }: PodcastDetailScreenProps) {
       </View>
 
       <Text style={styles.sectionTitle}>About</Text>
-
       <Text style={styles.description}>{podcast.description}</Text>
+
+      <Text style={styles.sectionTitle}>Episodes</Text>
+      <View style={styles.episodesList}>
+        {episodes.map((episode) => (
+          <EpisodeItem
+            key={episode.id}
+            episode={episode}
+            focused={focusedEpisodeId === episode.id}
+            onFocus={(episodeId) => setFocusedEpisodeId(episodeId)}
+          />
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -112,6 +142,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     opacity: 0.9,
   },
+
+  episodesList: {
+    gap: scaleHeight(20),
+  },
 });
+
 
 
