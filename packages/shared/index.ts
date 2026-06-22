@@ -1,6 +1,8 @@
 export {Header} from './src/components/Header/Header';
 export {HomeScreen} from './src/screens/HomeScreen';
+export {PodcastDetailScreen} from './src/screens/PodcastDetailScreen';
 export {ApiDemo} from './src/components/ApiDemo';
+
 
 export {
   scaleFontSize,

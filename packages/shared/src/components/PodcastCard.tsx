@@ -12,7 +12,11 @@ interface PodcastCardProps {
     }
 }
 
-export function PodcastCard({ podcast }: PodcastCardProps) {
+interface PodcastCardPropsExtended extends PodcastCardProps {
+    onPress?: (id: string) => void;
+}
+
+export function PodcastCard({ podcast, onPress }: PodcastCardPropsExtended) {
     const [isFocused, setIsFocused] = useState(false)
 
     return (
@@ -21,9 +25,10 @@ export function PodcastCard({ podcast }: PodcastCardProps) {
             onBlur={() => setIsFocused(false)}
             style={[styles.container, isFocused && styles.focusedContainer]}
             onPress={() => {
-                console.log('podcast pressed: ', podcast.title)
+                onPress?.(podcast.id.toString());
             }}
         >
+
             <Image
                 style={styles.image}
                 source={{ uri: podcast.artwork || podcast.image }}
