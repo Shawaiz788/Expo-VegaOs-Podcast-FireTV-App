@@ -57,6 +57,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@amazon-devices/kepler-media-controls@npm:^1.0.0":
+  version: 1.0.21
+  resolution: "@amazon-devices/kepler-media-controls@npm:1.0.21"
+  peerDependencies:
+    "@amazon-devices/kepler-media-types": ^1.0.0
+    "@amazon-devices/keplerscript-turbomodule-api": ^1.0.0
+    "@amazon-devices/react-native-kepler": ^2.0.0
+    react: 18.2.0
+    react-native: 0.72.0
+  checksum: 10c0/7c8b4a2853b10cb6acc400bfe8e4b86d8d552b022607b6545b9b01f1e68d08c77722e2c5ab8c3f28229d9a6f4fb59b416df52c8e1d6dbff61d7f186de4680499
+  languageName: node
+  linkType: hard
+
+"@amazon-devices/kepler-media-types@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@amazon-devices/kepler-media-types@npm:1.0.0"
+  checksum: 10c0/d9ccb75d03d5a2129e6c18196596f75250aced0454a3a465c40684905e13b22616f6f7badd572ce8882e0326ed8bb7cf94d3f173bc06ed75156353f6681b8c59
+  languageName: node
+  linkType: hard
+
 "@amazon-devices/kepler-module-manifest-builder@npm:^0.1.0":
   version: 0.1.13
   resolution: "@amazon-devices/kepler-module-manifest-builder@npm:0.1.13"
@@ -85,6 +105,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@amazon-devices/keplermediadescriptor@npm:^1.1.0":
+  version: 1.1.15
+  resolution: "@amazon-devices/keplermediadescriptor@npm:1.1.15"
+  dependencies:
+    "@amazon-devices/keplerscript-turbomodule-api": "npm:^1.0.0"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/dcc05aca7c7b58a98c6181231c9df0028d5c5003d896729988ee8d3b276a2e230a859f33508ded1a52e752642dbcc3433a315c1b83023b46448fd5e0d97cb5dc
+  languageName: node
+  linkType: hard
+
 "@amazon-devices/keplerscript-commonmodules@npm:^1.0.0":
   version: 1.0.1756501375
   resolution: "@amazon-devices/keplerscript-commonmodules@npm:1.0.1756501375"
@@ -99,6 +131,22 @@ __metadata:
     modify-allow-list: bin/modifyAllowListScript.js
     validate-js-acr: bin/validate-js-acr
   checksum: 10c0/dd2a88ab786a23b395843f2f9b0a74832bff9de85f296d7e613c35b734a62e71514fc04f42fb9e32d2627eedda5ea7633a46a4d786946eac7f7a4dfeec14dae0
+  languageName: node
+  linkType: hard
+
+"@amazon-devices/keplerscript-turbomodule-api@npm:^1.0.0":
+  version: 1.2.5
+  resolution: "@amazon-devices/keplerscript-turbomodule-api@npm:1.2.5"
+  dependencies:
+    "@babel/parser": "npm:^7.20.0"
+    flow-parser: "npm:^0.206.0"
+    invariant: "npm:^2.2.4"
+    jscodeshift: "npm:^0.14.0"
+    nullthrows: "npm:^1.1.1"
+    yargs: "npm:^17.7.2"
+  bin:
+    keplerscript-turbomodule-api: cli.js
+  checksum: 10c0/571ffa10f043de6d1519b578103c0a355be356235250ee17f5df468382deb5b69c7ab06a58b9e34b42bbad1cef404718810795e5f433fc3c50bb274f5433bfad
   languageName: node
   linkType: hard
 
@@ -186,6 +234,23 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/bf52d869bb37fc07322ba50f0741da03179f78f5a9300691313cfa1147e17fd68faf72c733bd4a43210a2ae5a751ab0b3d37994e5328b92f75b6d87064a3bbd3
+  languageName: node
+  linkType: hard
+
+"@amazon-devices/react-native-w3cmedia@npm:*":
+  version: 2.2.21
+  resolution: "@amazon-devices/react-native-w3cmedia@npm:2.2.21"
+  dependencies:
+    "@amazon-devices/kepler-media-controls": "npm:^1.0.0"
+    "@amazon-devices/kepler-media-types": "npm:^1.0.0"
+    "@amazon-devices/keplermediadescriptor": "npm:^1.1.0"
+    "@amazon-devices/keplerscript-turbomodule-api": "npm:^1.0.0"
+    eventemitter3: "npm:^4.0.7"
+  peerDependencies:
+    "@amazon-devices/react-native-kepler": ^2.0.0
+    react: 18.2.0
+    react-native: 0.72.0
+  checksum: 10c0/d9f6acd7b065d2574b58fc760944a0800319b05c60623c425cf7afc3671eb100b0abd92f2fef07d964f0da526c29b1063e10c95257d445cc68929dc3d9c4c793
   languageName: node
   linkType: hard
 
@@ -3143,6 +3208,7 @@ __metadata:
     "@amazon-devices/react-native-kepler": "npm:^2.0.0"
     "@amazon-devices/react-native-safe-area-context": "npm:~2.0.0"
     "@amazon-devices/react-native-screens": "npm:~2.0.0"
+    "@amazon-devices/react-native-w3cmedia": "npm:*"
     "@amazon-devices/react-navigation__native": "npm:~7.0.0"
     "@amazon-devices/react-navigation__native-stack": "npm:~7.0.0"
     "@multitv/shared": "npm:*"
@@ -7120,6 +7186,13 @@ __metadata:
   version: 5.0.1
   resolution: "event-target-shim@npm:5.0.1"
   checksum: 10c0/0255d9f936215fd206156fd4caa9e8d35e62075d720dc7d847e89b417e5e62cf1ce6c9b4e0a1633a9256de0efefaf9f8d26924b1f3c8620cffb9db78e7d3076b
+  languageName: node
+  linkType: hard
+
+"eventemitter3@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 10c0/5f6d97cbcbac47be798e6355e3a7639a84ee1f7d9b199a07017f1d2f1e2fe236004d14fa5dfaeba661f94ea57805385e326236a6debbc7145c8877fbc0297c6b
   languageName: node
   linkType: hard
 

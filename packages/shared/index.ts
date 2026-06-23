@@ -10,8 +10,22 @@ export {
   scaleHeight,
 } from './src/utils/scaling';
 
-// HTTP Client (fetch-based)
 export {createHttpClient} from './src/services/httpClient';
 export type {HttpClientConfig, HttpResponse} from './src/services/httpClient';
 
+// Podcast Index hooks (used by platform player containers)
+export {
+  useFeedById,
+  useEpisodeById,
+  useEpisodesByFeedId,
+  useSearchPodcasts,
+  useTrending,
+  PodcastIndexProvider,
+} from './src/context/PodcastIndexContext';
 
+export {digestSHA1} from './src/crypto/digestSHA1';
+
+export {PlayerScreen} from './src/screens/PlayerScreen';
+export type {PlayerState} from './src/screens/PlayerScreen';
+export {SearchScreen} from './src/screens/SearchScreen';
+export {PodcastDetailsScreen} from './src/screens/PodcastDetailsScreen';

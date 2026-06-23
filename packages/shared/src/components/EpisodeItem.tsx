@@ -13,13 +13,16 @@ export function EpisodeItem({
   episode,
   focused,
   onFocus,
+  onPress,
 }: {
   episode: Episode;
   focused?: boolean;
   onFocus?: (episodeId: number) => void;
+  onPress?: (episodeId: number) => void;
 }) {
   return (
     <Pressable
+      onPress={() => onPress?.(episode.id)}
       onFocus={() => onFocus?.(episode.id)}
       onBlur={() => onFocus?.(episode.id)}
       style={[styles.container, focused && styles.focusedContainer]}

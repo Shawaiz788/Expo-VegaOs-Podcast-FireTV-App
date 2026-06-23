@@ -35,7 +35,11 @@ export class HttpClient {
   private async request<T>(
     method: string,
     path: string,
-    options?: {body?: unknown; query?: Record<string, unknown>},
+    options?: {
+      body?: unknown;
+      query?: Record<string, unknown>;
+      headers?: Record<string, string>;
+    },
   ): Promise<HttpResponse<T>> {
     let url = this.buildUrl(path);
     if (options?.query) {
@@ -47,15 +51,19 @@ export class HttpClient {
     }
 
     const fetchOptions: RequestInit = {method};
+    const combinedHeaders = {
+      ...this.defaultHeaders,
+      ...options?.headers,
+    };
 
     if (options?.body) {
       fetchOptions.headers = {
         'Content-Type': 'application/json',
-        ...this.defaultHeaders,
+        ...combinedHeaders,
       };
       fetchOptions.body = JSON.stringify(options.body);
-    } else if (Object.keys(this.defaultHeaders).length > 0) {
-      fetchOptions.headers = this.defaultHeaders;
+    } else if (Object.keys(combinedHeaders).length > 0) {
+      fetchOptions.headers = combinedHeaders;
     }
 
     const response = await fetch(url, fetchOptions);
@@ -72,33 +80,40 @@ export class HttpClient {
   async get<T = unknown>(
     path: string,
     query?: Record<string, unknown>,
+    headers?: Record<string, string>,
   ): Promise<HttpResponse<T>> {
-    return this.request<T>('GET', path, {query});
+    return this.request<T>('GET', path, {query, headers});
   }
 
   async post<T = unknown>(
     path: string,
     body?: unknown,
+    headers?: Record<string, string>,
   ): Promise<HttpResponse<T>> {
-    return this.request<T>('POST', path, {body});
+    return this.request<T>('POST', path, {body, headers});
   }
 
   async put<T = unknown>(
     path: string,
     body?: unknown,
+    headers?: Record<string, string>,
   ): Promise<HttpResponse<T>> {
-    return this.request<T>('PUT', path, {body});
+    return this.request<T>('PUT', path, {body, headers});
   }
 
   async patch<T = unknown>(
     path: string,
     body?: unknown,
+    headers?: Record<string, string>,
   ): Promise<HttpResponse<T>> {
-    return this.request<T>('PATCH', path, {body});
+    return this.request<T>('PATCH', path, {body, headers});
   }
 
-  async delete<T = unknown>(path: string): Promise<HttpResponse<T>> {
-    return this.request<T>('DELETE', path);
+  async delete<T = unknown>(
+    path: string,
+    headers?: Record<string, string>,
+  ): Promise<HttpResponse<T>> {
+    return this.request<T>('DELETE', path, {headers});
   }
 }
 

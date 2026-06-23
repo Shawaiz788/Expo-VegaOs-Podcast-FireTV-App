@@ -8,9 +8,13 @@ import type { Episode } from '../types';
 
 export interface PodcastDetailScreenProps {
   id: string | number;
+  onEpisodePress?: (episodeId: number) => void;
 }
 
-export function PodcastDetailScreen({ id }: PodcastDetailScreenProps) {
+export function PodcastDetailScreen({
+  id,
+  onEpisodePress,
+}: PodcastDetailScreenProps) {
   const podcast = (podcasts as any).feeds.find(
     (feed: any) => String(feed.id) === String(id),
   );
@@ -74,6 +78,7 @@ export function PodcastDetailScreen({ id }: PodcastDetailScreenProps) {
             episode={episode}
             focused={focusedEpisodeId === episode.id}
             onFocus={(episodeId) => setFocusedEpisodeId(episodeId)}
+            onPress={(episodeId) => onEpisodePress?.(episodeId)}
           />
         ))}
       </View>

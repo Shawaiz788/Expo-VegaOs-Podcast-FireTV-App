@@ -1,5 +1,6 @@
-- [ ] Implement PodcastDetailScreen UI (header + episode list from data/episodes.json)
-- [ ] Add EpisodeItem component that renders an episode row and supports focus highlight
-- [ ] Wire focus state in PodcastDetailScreen and highlight focused episode
-- [ ] Run typecheck/lint/tests (as available)
-
+- [x] Update shared EpisodeItem to support onPress(episodeId)
+- [x] Update shared PodcastDetailScreen to accept onEpisodePress callback and pass to EpisodeItem
+- [x] Update vega navigation stack to include Player screen
+- [x] Wire vega EpisodeItem press -> navigate to Player with episodeId
+- [x] Wire expotv EpisodeItem press -> navigate to /player/[episodeId]
+- [x] Run typecheck/lint/build to ensure all packages compile (vega lint ok; expotv lint fails due to missing eslint)
