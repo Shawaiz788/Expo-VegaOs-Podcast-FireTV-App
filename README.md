@@ -1,16 +1,24 @@
-# Multi-TV Hello World
+# MultiTV Podcasts
 
-A monorepo for building TV apps across multiple platforms using Yarn workspaces, including Vega OS (Fire TV), Expo TV (Android TV / Apple TV), and web.
+A cross-platform TV podcast player built with React Native, supporting Fire TV, Android TV, Apple TV, and the web.
 
 ![Screenshots](./images/screenshots.png)
 
+
+https://github.com/user-attachments/assets/54e3b5af-c778-45c0-8ceb-223d5ed6cd1a
+
+
 ## Introduction
 
-This project demonstrates how to share React Native code across multiple TV platforms using a Yarn workspaces monorepo. It includes:
+MultiTV Podcasts allows users to discover and listen to podcasts directly on TV devices through a remote-friendly interface. The app integrates with the Podcast API, enabling users to search for podcasts, browse podcast details, and select from multiple episodes for playback.
 
-- A shared package with common components, screens, and utilities
-- A Vega app targeting Fire TV
-- An Expo TV app targeting Android TV and Apple TV
+### Features
+
+* 🔍 Search podcasts using the Podcast API
+* 🎙 Browse podcast information and episode lists
+* 📺 Select and play episodes from your favorite podcasts
+* 🎯 TV-optimized navigation and focus management
+* 🔄 Shared codebase across multiple TV platforms
 
 ### Supported Platforms
 
@@ -19,6 +27,19 @@ This project demonstrates how to share React Native code across multiple TV plat
 | Vega (Kepler) | Fire TV              |
 | Expo TV       | Android TV, Apple TV |
 | Expo Web      | Browser              |
+
+## Architecture
+
+This project is built as a Yarn Workspaces monorepo to maximize code sharing across TV platforms. The repository includes:
+
+* A shared package containing reusable components, screens, services, and utilities
+* A Vega application targeting Fire TV devices
+* An Expo TV application targeting Android TV and Apple TV
+* Web support through Expo Web
+
+The shared architecture allows most application logic, UI components, and API integrations to be written once and reused across all supported platforms.
+
+## Project Structure
 
 ## Project Structure
 
