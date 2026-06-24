@@ -1,65 +1,81 @@
-import { ImageBackground } from 'react-native';
-import { enableFreeze, enableScreens } from '@amazon-devices/react-native-screens';
-import { createNativeStackNavigator } from '@amazon-devices/react-navigation__native-stack';
-import { NavigationContainer } from '@amazon-devices/react-navigation__native';
-import {HomeScreen, PodcastDetailScreen, PodcastIndexProvider, digestSHA1} from '@multitv/shared';
 import React from 'react';
-import {PlayerScreen} from './screens/PlayerScreen';
-
-
+import {ImageBackground} from 'react-native';
+import {
+  enableFreeze,
+  enableScreens,
+} from '@amazon-devices/react-native-screens';
+import {createNativeStackNavigator} from '@amazon-devices/react-navigation__native-stack';
+import {NavigationContainer} from '@amazon-devices/react-navigation__native';
+import {
+  HomeScreen,
+  PodcastDetailsScreen,
+  PodcastIndexProvider,
+  SearchScreen,
+} from '@multitv/shared';
+import {PlayerScreenContainer} from './screens/PlayerScreenContainer';
+import {digestSHA1} from './crypto/digestSHA1';
 
 enableScreens();
 enableFreeze();
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  Search: undefined;
+  PodcastDetails: {id: string | number};
+  Player: {episodeId: string | number};
+};
 
-function HomeScreenWrapper({ navigation }: { navigation: any }) {
-  return (
-    <HomeScreen
-      onPodcastPress={(id: string) => navigation.navigate('PodcastDetail', { id })}
-    />
-  );
-}
-
-
-function PodcastDetailWrapper({
-  navigation,
-  route,
-}: {
-  navigation: any;
-  route: any;
-}) {
-  return (
-    <PodcastDetailScreen
-      id={route.params.id}
-      onEpisodePress={(episodeId: number) =>
-        navigation.navigate('Player', {episodeId})
-      }
-    />
-  );
-}
-
-function PlayerScreenWrapper({route}: {route: any}) {
-  return <PlayerScreen episodeId={route.params.episodeId} />;
-}
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const App = () => {
   return (
-    <NavigationContainer>
-      <PodcastIndexProvider digestSHA1={digestSHA1}>
-        <ImageBackground source={require('./assets/background.png')} style={{ flex: 1 }}>
+    <PodcastIndexProvider digestSHA1={digestSHA1}>
+      <NavigationContainer>
+        <ImageBackground
+          source={require('./assets/background.png')}
+          style={{flex: 1}}>
           <Stack.Navigator
             initialRouteName="Home"
             screenOptions={{
               headerShown: false,
             }}>
-            <Stack.Screen name="Home" component={HomeScreenWrapper} />
-            <Stack.Screen name="PodcastDetail" component={PodcastDetailWrapper} />
-            <Stack.Screen name="Player" component={PlayerScreenWrapper} />
+            <Stack.Screen name="Home">
+              {({navigation}) => (
+                <HomeScreen
+                  onPodcastPress={id =>
+                    navigation.navigate('PodcastDetails', {id})
+                  }
+                  onSearchPress={() => navigation.navigate('Search')}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Search">
+              {({navigation}) => (
+                <SearchScreen
+                  onPodcastPress={id =>
+                    navigation.navigate('PodcastDetails', {id})
+                  }
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="PodcastDetails">
+              {({route, navigation}) => (
+                <PodcastDetailsScreen
+                  podcastId={route.params.id}
+                  onEpisodePress={episodeId =>
+                    navigation.navigate('Player', {episodeId})
+                  }
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="Player">
+              {({route}) => (
+                <PlayerScreenContainer episodeId={route.params.episodeId} />
+              )}
+            </Stack.Screen>
           </Stack.Navigator>
         </ImageBackground>
-      </PodcastIndexProvider>
-    </NavigationContainer>
+      </NavigationContainer>
+    </PodcastIndexProvider>
   );
 };
-

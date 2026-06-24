@@ -45,25 +45,27 @@ export class HttpClient {
     if (options?.query) {
       const params = new URLSearchParams();
       for (const [key, value] of Object.entries(options.query)) {
+        if (value === undefined || value === null) continue;
         params.append(key, String(value));
       }
-      url += `?${params.toString()}`;
+      const qs = params.toString();
+      if (qs) url += `?${qs}`;
     }
 
-    const fetchOptions: RequestInit = {method};
-    const combinedHeaders = {
+    const headers: Record<string, string> = {
       ...this.defaultHeaders,
-      ...options?.headers,
+      ...(options?.headers ?? {}),
     };
 
-    if (options?.body) {
-      fetchOptions.headers = {
-        'Content-Type': 'application/json',
-        ...combinedHeaders,
-      };
+    const fetchOptions: RequestInit = {method};
+
+    if (options?.body !== undefined) {
+      headers['Content-Type'] = headers['Content-Type'] ?? 'application/json';
       fetchOptions.body = JSON.stringify(options.body);
-    } else if (Object.keys(combinedHeaders).length > 0) {
-      fetchOptions.headers = combinedHeaders;
+    }
+
+    if (Object.keys(headers).length > 0) {
+      fetchOptions.headers = headers;
     }
 
     const response = await fetch(url, fetchOptions);

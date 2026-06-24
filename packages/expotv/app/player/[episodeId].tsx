@@ -1,6 +1,6 @@
-import {useCallback, useEffect, useRef, useState} from 'react';
-import {Audio, AVPlaybackStatus} from 'expo-av';
-import {Stack, useLocalSearchParams} from 'expo-router';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Audio, AVPlaybackStatus } from 'expo-av';
+import { Stack, useLocalSearchParams } from 'expo-router';
 
 import {
   PlayerScreen,
@@ -10,16 +10,16 @@ import {
 } from '@multitv/shared';
 
 export default function PlayerRoute() {
-  const {episodeId} = useLocalSearchParams<{episodeId: string}>();
+  const { episodeId } = useLocalSearchParams<{ episodeId: string }>();
   const soundRef = useRef<Audio.Sound | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  const {data: episode, loading: loadingEpisode, error: episodeError} =
+  const { data: episode, loading: loadingEpisode, error: episodeError } =
     useEpisodeById(episodeId);
-  const {data: feed} = useFeedById(episode?.feedId);
+  const { data: feed } = useFeedById(episode?.feedId);
   const url = episode?.enclosureUrl;
 
   useEffect(() => {
@@ -39,9 +39,9 @@ export default function PlayerRoute() {
     };
 
     (async () => {
-      const {sound} = await Audio.Sound.createAsync(
-        {uri: url},
-        {shouldPlay: true},
+      const { sound } = await Audio.Sound.createAsync(
+        { uri: url },
+        { shouldPlay: true },
         onStatus,
       );
       if (cancelled) {
@@ -56,7 +56,7 @@ export default function PlayerRoute() {
       const sound = soundRef.current;
       soundRef.current = null;
       if (sound) {
-        sound.unloadAsync().catch(() => {});
+        sound.unloadAsync().catch(() => { });
       }
     };
   }, [url]);
@@ -99,7 +99,7 @@ export default function PlayerRoute() {
 
   return (
     <>
-      <Stack.Screen options={{title: episode?.title ?? 'Now Playing'}} />
+      <Stack.Screen options={{ title: episode?.title ?? 'Now Playing' }} />
       <PlayerScreen
         episode={episode}
         podcast={feed}

@@ -9,7 +9,8 @@ import {
 } from 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { PodcastIndexProvider, digestSHA1 } from '@multitv/shared';
+import { PodcastIndexProvider } from '@multitv/shared';
+import { digestSHA1 } from '@/lib/digestSHA1';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

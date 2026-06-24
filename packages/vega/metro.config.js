@@ -32,7 +32,11 @@ const config = {
       // so shared package code resolves to the correct native module
       'lottie-react-native': path.resolve(projectRoot, 'node_modules', '@amazon-devices', 'lottie-react-native'),
     },
-    blockList: metroTools.blockList,
+    blockList: [
+      /[\\/]MultiTV-Podcasts[\\/]/,
+      /[\\/]packages[\\/]expotv[\\/]/,
+      ...metroTools.blockList,
+    ],
   },
 };
 

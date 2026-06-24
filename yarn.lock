@@ -17,6 +17,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@amazon-devices/expo-crypto@npm:^2.0.1758683737":
+  version: 2.0.9000000000
+  resolution: "@amazon-devices/expo-crypto@npm:2.0.9000000000"
+  dependencies:
+    base64-js: "npm:^1.3.0"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/f2e03d7c29424f7c0ec030d87183369e2689808038339b5cf9026be227ec7215d195e71c5c42eddb6d348953fb6fe4e47c2c0720c04a32d5a4ce0737840b5bc9
+  languageName: node
+  linkType: hard
+
 "@amazon-devices/js-bundle-system-allow-list@npm:*, @amazon-devices/js-bundle-system-allow-list@npm:^0":
   version: 0.0.21
   resolution: "@amazon-devices/js-bundle-system-allow-list@npm:0.0.21"
@@ -134,7 +145,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amazon-devices/keplerscript-turbomodule-api@npm:^1.0.0":
+"@amazon-devices/keplerscript-turbomodule-api@npm:^1.0.0, @amazon-devices/keplerscript-turbomodule-api@npm:^1.2.5":
   version: 1.2.5
   resolution: "@amazon-devices/keplerscript-turbomodule-api@npm:1.2.5"
   dependencies:
@@ -237,7 +248,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@amazon-devices/react-native-w3cmedia@npm:*":
+"@amazon-devices/react-native-w3cmedia@npm:^2.2.20":
   version: 2.2.21
   resolution: "@amazon-devices/react-native-w3cmedia@npm:2.2.21"
   dependencies:
@@ -3153,6 +3164,7 @@ __metadata:
     "@react-native-tvos/config-tv": "npm:^0.1.4"
     "@types/react": "npm:~19.1.10"
     expo: "npm:^54.0.20"
+    expo-av: "npm:~16.0.8"
     expo-build-properties: "npm:~1.0.9"
     expo-font: "npm:~14.0.9"
     expo-linking: "npm:~8.0.8"
@@ -3202,13 +3214,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@multitv/vega@workspace:packages/vega"
   dependencies:
+    "@amazon-devices/expo-crypto": "npm:^2.0.1758683737"
     "@amazon-devices/kepler-cli-platform": "npm:~0.22.0"
     "@amazon-devices/kepler-module-resolver-preset": "npm:^0.1.15"
+    "@amazon-devices/keplerscript-turbomodule-api": "npm:^1.2.5"
     "@amazon-devices/lottie-react-native": "npm:~2.0.0"
     "@amazon-devices/react-native-kepler": "npm:^2.0.0"
     "@amazon-devices/react-native-safe-area-context": "npm:~2.0.0"
     "@amazon-devices/react-native-screens": "npm:~2.0.0"
-    "@amazon-devices/react-native-w3cmedia": "npm:*"
+    "@amazon-devices/react-native-w3cmedia": "npm:^2.2.20"
     "@amazon-devices/react-navigation__native": "npm:~7.0.0"
     "@amazon-devices/react-navigation__native-stack": "npm:~7.0.0"
     "@multitv/shared": "npm:*"
@@ -3224,6 +3238,7 @@ __metadata:
     babel-jest: "npm:^28.0.0"
     babel-plugin-module-resolver: "npm:^5.0.2"
     eslint: "npm:^8.12.0"
+    expo-modules-core: "npm:^55.0.23"
     jest: "npm:^28.0.0"
     metro-react-native-babel-preset: "npm:^0.76.5"
     mustache: "npm:^4.2.0"
@@ -5626,7 +5641,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base64-js@npm:^1.1.2, base64-js@npm:^1.2.3, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
+"base64-js@npm:^1.1.2, base64-js@npm:^1.2.3, base64-js@npm:^1.3.0, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 10c0/f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
@@ -7260,6 +7275,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"expo-av@npm:~16.0.8":
+  version: 16.0.8
+  resolution: "expo-av@npm:16.0.8"
+  peerDependencies:
+    expo: "*"
+    react: "*"
+    react-native: "*"
+    react-native-web: "*"
+  peerDependenciesMeta:
+    react-native-web:
+      optional: true
+  checksum: 10c0/2f40b8fcc7824d4f3e0078e6dff25ccb5b12b21abfcf6de30f4ea831716c6be18f9b59ab085e7b88ece5b0d314f998798e864f4b4a3c0f493c66060f4fc94955
+  languageName: node
+  linkType: hard
+
 "expo-build-properties@npm:~1.0.9":
   version: 1.0.10
   resolution: "expo-build-properties@npm:1.0.10"
@@ -7355,6 +7385,22 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/e32a87b06aa772f523afa5a995523848c61c06370085ae9e724ad24432cac38925ff69976f58b2c562828c2cefba6df00cfef2dbb206111413890ce1c2baee19
+  languageName: node
+  linkType: hard
+
+"expo-modules-core@npm:^55.0.23":
+  version: 55.0.25
+  resolution: "expo-modules-core@npm:55.0.25"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-worklets: ^0.7.4 || ^0.8.0
+  peerDependenciesMeta:
+    react-native-worklets:
+      optional: true
+  checksum: 10c0/f3ae7e51e42d1ef54a879279beb86a01246ed54762001ca7864da70a84b9c63922ef2040fae2a54951a333de696c4976fe2649d3f316bc7241475f5821039251
   languageName: node
   linkType: hard
 
